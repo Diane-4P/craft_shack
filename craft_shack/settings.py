@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'allauth', # required by allauth so copied from allauth documentation
     'allauth.account', # required by allauth so copied from allauth documentation
     'allauth.socialaccount', # required by allauth so copied from allauth documentation
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,10 @@ ROOT_URLCONF = 'craft_shack.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates' 'allauth'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
