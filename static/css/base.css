@@ -62,6 +62,10 @@ body h2 {
     border: 1px solid black !important;
 }
 
+.bg-black {
+    background: black !important;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */

@@ -38,7 +38,6 @@
     {% block extra_js %}
     {% endblock extra_js %}
 
-
     <title>Craft Shack {% block extra_title %}{% endblock extra_title %}</title>
     
   </head>
@@ -103,6 +102,21 @@
               </a>
             </li>
           </ul>
+        </div>
+      </div>
+      <div class="row bg-white">
+        <nav class="navbar navbar-expand-lg navbar-light w-100">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"
+            aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          {% include "includes/mobile_top_header.html" %}
+          {% include "includes/main_nav.html" %}
+        </nav>
+      </div>
+       <div id="delivery-banner" class="row text-center">
+        <div class="col bg-black text-white">
+          <h4 class="logo-font my-1">Free delivery on orders over ${{ free_shipping_threshold }}!</h4>
         </div>
       </div>
     </header>
