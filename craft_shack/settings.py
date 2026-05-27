@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account', # required by allauth so copied from allauth documentation
     'allauth.socialaccount', # required by allauth so copied from allauth documentation
     'home',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +111,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 
 
 # Password validation
