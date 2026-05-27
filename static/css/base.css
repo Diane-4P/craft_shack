@@ -8,11 +8,11 @@ body {
     background: url('/media/homepage_background.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
-    color: white;
+    color: #555;
     font-family: Pontano, sans-serif;
 }
 
-body h2 {
+.logo {
     font-family: Sancreek, serif;
 }
 
@@ -64,6 +64,16 @@ body h2 {
 
 .bg-black {
     background: black !important;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
 }
 
 /* Media Queries */
