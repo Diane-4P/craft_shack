@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Product, Category, Subcategory
 
 # Create your views here.
@@ -11,8 +12,27 @@ def all_products(request):
     query = None
     categories = None
     subcategories = None
+    sort = None
+    direction = None
     
     if request.GET:
+        # Sorting code from Google AI Assistant         
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            
+            allowed_sort_fields = ['name', 'price', 'category__name', 'subcategory__name']
+            if sortkey in allowed_sort_fields:
+                if sortkey == 'name':
+                    sortkey = 'lower_name'
+                    products = products.annotate(lower_name=Lower('name'))
+                    
+                if request.GET.get('direction') == 'desc':
+                    sortkey = f'-{sortkey}'
+                    
+                products = products.order_by(sortkey)
+            
+            else:
+                products = products.order_by('name')
         
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -32,12 +52,15 @@ def all_products(request):
             
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
+    
+    current_sorting = f'{sort}_{direction}'
             
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_subcategories': subcategories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
