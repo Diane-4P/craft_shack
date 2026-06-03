@@ -16,24 +16,26 @@ def all_products(request):
     direction = None
     
     if request.GET:
-        # Sorting code from Google AI Assistant         
+        # Sorting code from Google AI Assistant
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+
+            if sortkey == 'category':
+                sortkey = 'category__name'
             
-            allowed_sort_fields = ['name', 'price', 'category__name', 'subcategory__name']
-            if sortkey in allowed_sort_fields:
-                if sortkey == 'name':
-                    sortkey = 'lower_name'
-                    products = products.annotate(lower_name=Lower('name'))
-                    
-                if request.GET.get('direction') == 'desc':
+            if sortkey == 'subcategory':
+                sortkey = 'subcategory__name'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
                     sortkey = f'-{sortkey}'
-                    
-                products = products.order_by(sortkey)
-            
-            else:
-                products = products.order_by('name')
-        
+            products = products.order_by(sortkey)
+         
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)

@@ -76,6 +76,22 @@ body {
     z-index: -1;
 }
 
+hr {
+    margin: 1rem auto;
+}
+
+a.category-badge > span.badge:hover {
+    /* Gun metal */
+    background: #212529 !important;
+    color: #fff !important;
+}
+
+a.subcategory-badge > span.badge:hover {
+    /* Do not disturb */
+    background: #363d44 !important;
+    color: #fff !important;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
