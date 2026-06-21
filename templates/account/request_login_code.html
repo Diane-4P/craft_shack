@@ -1,0 +1,36 @@
+{% extends "account/base_entrance.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+{% load allauth account %}
+{% block head_title %}
+    {% translate "Sign In" %}
+{% endblock head_title %}
+{% block inner_content %}
+    {% element hr %}{% endelement %}
+    {% element h2 %}
+        {% translate "Send me a sign-in code" %}
+    {% endelement %}
+    {% element hr %}{% endelement %}
+    {% element p %}
+        {% blocktranslate %}You will receive a special code for a password-free sign-in.{% endblocktranslate %}
+    {% endelement %}
+    {% element form form=form method="post" action=request_login_code_url tags="entrance,login" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" tags="prominent,login" %}
+                {% translate "Request Code" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+    {% element button href=login_url tags="link" %}
+        {% translate "Other sign-in options" %}
+    {% endelement %}
+{% endblock inner_content %}

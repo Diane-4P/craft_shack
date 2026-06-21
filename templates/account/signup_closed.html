@@ -1,0 +1,18 @@
+{% extends "account/base_entrance.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Sign Up Closed" %}
+{% endblock head_title %}
+{% block inner_content %}
+    {% element hr %}{% endelement %}
+    {% element h2 %}
+        {% trans "Sign Up Closed" %}
+    {% endelement %}
+    {% element hr %}{% endelement %}
+    {% element p %}
+        {% trans "We are sorry, but the sign up is currently closed." %}
+    {% endelement %}
+{% endblock inner_content %}

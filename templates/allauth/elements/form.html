@@ -1,0 +1,10 @@
+{% load allauth %}
+{% load crispy_forms_tags %}
+<form method="post"
+      action="{{ attrs.action }}">
+
+    {% slot body %}
+    {% endslot %}
+    {% slot actions %}
+    {% endslot %}
+</form>
