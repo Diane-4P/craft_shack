@@ -1,6 +1,4 @@
 {% if widget.is_initial %}
-    <p>DEBUG VALUE: {{ widget.value }}</p>
-    <p>DEBUG URL: {{ widget.value.url }}</p>
     <p>{{ widget.initial_text }}:</p>
     <!-- Replaces the filename value with a small preview of the image -->
     <a href="{% if widget.value.url %}{{ widget.value.url }}{% else %}/media/{{ widget.value }}{% endif %}">
