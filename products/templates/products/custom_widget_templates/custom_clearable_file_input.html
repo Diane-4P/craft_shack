@@ -1,0 +1,22 @@
+{% if widget.is_initial %}
+    <p>DEBUG VALUE: {{ widget.value }}</p>
+    <p>DEBUG URL: {{ widget.value.url }}</p>
+    <p>{{ widget.initial_text }}:</p>
+    <!-- Replaces the filename value with a small preview of the image -->
+    <a href="{% if widget.value.url %}{{ widget.value.url }}{% else %}/media/{{ widget.value }}{% endif %}">
+        <img width="96" height="96" class="rounded shadow-sm" src="{% if widget.value.url %}{{ widget.value.url }}{% else %}/media/{{ widget.value }}{% endif %}" alt="">
+    </a>
+    {% if not widget.required %}
+        <!-- Wraps the checkbox in a div with Bootstrap classes for styling -->
+        <div class="custom-control custom-checkbox mt-2">
+            <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}" {% if widget.attrs.disabled %}    disabled{% endif %} {% if widget.attrs.checked %}checked{% endif %}>
+            <label class="custom-control-label" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+        </div>
+    {% endif %}<br>
+    {{ widget.input_text }}:
+{% endif %}
+<span class="btn btn-black rounded-0 btn-file">
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+</span>
+<!-- File name once one is selected -->
+<strong><p class="text-danger" id="filename"></p></strong>

@@ -99,7 +99,7 @@ def add_product(request):
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
-        form = ProductForm
+        form = ProductForm()
         
     template = 'products/add_product.html'
     context = {
