@@ -60,20 +60,21 @@ def all_products(request):
             products = products.annotate(lower_name=Lower('name'))
             sortkey = 'lower_name'
 
-        if sortkey == 'category':
+        elif sortkey == 'category':
             sortkey = 'category__name'
         
-        if sortkey == 'subcategory':
+        elif sortkey == 'subcategory':
             sortkey = 'subcategory__name'
 
-        if direction == 'desc':
+        if direction and direction == 'desc':
             sortkey = f'-{sortkey}'
-            
-            
+                        
         products = products.order_by(sortkey)
         
         # Create current_sorting for template
-        current_sorting = f'{sort}_{direction}'
+        current_sorting = f'{sort}_{direction if direction else "None"}'
+    else:
+        current_sorting = 'None_None'
        
     # Context     
     context = {
