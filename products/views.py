@@ -10,62 +10,73 @@ from .forms import ProductForm
 
 # Create your views here.
 def all_products(request):
-    """ A view to show all products, including sorting and search queries """
+    """ 
+    A view to show all products, including sorting and search queries 
+    (This view was obtained from ChatGPT to improve the filtering)
+    """
     
     products = Product.objects.all()
-    query = None
-    categories = None
-    subcategories = None
-    sort = None
-    direction = None
     
-    if request.GET:
-        # Sorting code from Google AI Assistant
-        if 'sort' in request.GET:
-            sortkey = request.GET['sort']
-            sort = sortkey
-            if sortkey == 'name':sortkey = 'lower_name'
-            products = products.annotate(lower_name=Lower('name'))
-
-            if sortkey == 'category':
-                sortkey = 'category__name'
+    # Get Params
+    query = request.GET.get('q', None)
+    sort = request.GET.get('sort', None)
+    direction = request.GET.get('direction', None)
+    
+    category_list = request.GET.get('category', None)
+    subcategory_list = request.GET.get('subcategory', None)
+    
+    current_categories = None
+    current_subcategories = None
             
-            if sortkey == 'subcategory':
-                sortkey = 'subcategory__name'
+    # Category filter (safe and slug based)
+    if category_list:
+        category_list = [c.strip().lower() for c in category_list.split(',')]
 
-            if 'direction' in request.GET:
-                direction = request.GET['direction']
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
-         
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            products = products.filter(category__name__in=categories)
-            categories = Category.objects.filter(name__in=categories)
-            
-        if  'subcategory' in request.GET:
-            subcategories = request.GET['subcategory'].split(',')
-            products = products.filter(subcategory__name__in=subcategories)
-            subcategories = Subcategory.objects.filter(name__in=subcategories)
+        products = products.filter(category__slug__in=category_list)
+        current_categories = Category.objects.filter(slug__in=category_list)
+
+    # Subcategory filter
+    if subcategory_list:
+        subcategory_list = [s.strip().lower() for s in subcategory_list.split(',')]
+
+        products = products.filter(subcategory__slug__in=subcategory_list)
+        current_subcategories = Subcategory.objects.filter(slug__in=subcategory_list)
         
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                messages.error(request, "You didn't enter any search criteria!")
-                return redirect('products')
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
-            products = products.filter(queries)
+    # Search
+    if query:
+        if not query.strip():
+            return redirect('products')
+
+        products = products.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query)
+        )
     
-    current_sorting = f'{sort}_{direction}'
+    # Sorting code by Google AI and ChatGPT
+    if sort:
+        sortkey = sort
+        
+        if sortkey == 'name':
+            products = products.annotate(lower_name=Lower('name'))
+            sortkey = 'lower_name'
+
+        if sortkey == 'category':
+            sortkey = 'category__name'
+        
+        if sortkey == 'subcategory':
+            sortkey = 'subcategory__name'
+
+        if direction in 'desc':
+            sortkey = f'-{sortkey}'
             
+        products = products.order_by(sortkey)
+       
+    # Context     
     context = {
         'products': products,
         'search_term': query,
-        'current_categories': categories,
-        'current_subcategories': subcategories,
-        'current_sorting': current_sorting,
+        'current_categories': current_categories,
+        'current_subcategories': current_subcategories,
     }
 
     return render(request, 'products/products.html', context)

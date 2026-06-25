@@ -9,6 +9,8 @@ class Category(models.Model):
         
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    # From ChatGPT code
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
@@ -25,6 +27,8 @@ class Subcategory(models.Model):
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    # From ChatGPT code
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.name
