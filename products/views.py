@@ -66,10 +66,14 @@ def all_products(request):
         if sortkey == 'subcategory':
             sortkey = 'subcategory__name'
 
-        if direction in 'desc':
+        if direction == 'desc':
             sortkey = f'-{sortkey}'
             
+            
         products = products.order_by(sortkey)
+        
+        # Create current_sorting for template
+        current_sorting = f'{sort}_{direction}'
        
     # Context     
     context = {
@@ -77,6 +81,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': current_categories,
         'current_subcategories': current_subcategories,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'products/products.html', context)
