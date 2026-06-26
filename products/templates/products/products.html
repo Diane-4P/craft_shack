@@ -16,17 +16,20 @@
             <div class="col text-center mt-3">
                 <h2 class="logo-font text-black">Products</h2>
                 <!-- Display category badge -->
-                {% for c in current_categories %}
-                <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
-                    <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
-                </a>
-                {% endfor %}
-                <!-- Display subcategory badge -->
-                 {% for subc in current_subcategories %}
-                <a class="subcategory-badge text-decoration-none" href="{% url 'products' %}?subcategory={{ subc.name }}">
-                    <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ subc.friendly_name }}</span>
-                </a>
-                {% endfor %}
+                 {% if category_badge %}
+                    {% for c in current_categories %}
+                    <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
+                    </a>
+                    {% endfor %}
+                {% else %}
+                    <!-- Display subcategory badge -->
+                    {% for subc in current_subcategories %}
+                    <a class="subcategory-badge text-decoration-none" href="{% url 'products' %}?subcategory={{ subc.name }}">
+                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ subc.friendly_name }}</span>
+                    </a>
+                    {% endfor %}
+                {% endif %}
                 <hr class="w-50 mb-1">
             </div>
         </div>
@@ -63,13 +66,14 @@
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-0">
+                                <!-- Product details -->
                                 {% if product.image %}
                                 <a href="{% url "product_detail" product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ product.image }}" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
                                 <a href="{% url "product_detail" product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid" src="{% static "images/noimage.png" %}" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-body pb-0">
