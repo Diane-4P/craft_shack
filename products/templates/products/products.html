@@ -65,7 +65,7 @@
                             <div class="card h-100 border-0">
                                 {% if product.image %}
                                 <a href="{% url "product_detail" product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid" src="{{ product.image }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
                                 <a href="{% url "product_detail" product.id %}">
@@ -82,13 +82,13 @@
                                             <!-- Product category name -->
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.slug }}">
+                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
                                                     <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                                             {% endif %}
                                             <!-- Product subcategory name -->
                                             {% if product.subcategory %}
                                             <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory.slug }}">
+                                                <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory }}">
                                                     <i class="fas fa-tag mr-1"></i>{{ product.subcategory.friendly_name }}
                                                 </a>
                                             </p>

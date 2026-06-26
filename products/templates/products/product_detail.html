@@ -16,8 +16,8 @@
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
                     {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <a href="{{ product.image }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ product.image }}" alt="{{ product.name }}">
                         </a>
                         {% else %}
                         <a href="">
@@ -33,7 +33,7 @@
                     <!-- Display category for product and links to product page -->
                     {% if product.category %}
                     <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category.slug }}">
+                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
                             <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                         </a>
                     </p>
@@ -41,7 +41,7 @@
                     <!-- Display subcategory for product and links to product page -->
                     {% if product.subcategory %}
                     <p class="small mt-1 mb-0">
-                        <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory.slug }}">
+                        <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory }}">
                             <i class="fas fa-tag mr-1"></i>{{ product.subcategory.friendly_name }}
                         </a>
                     </p>
