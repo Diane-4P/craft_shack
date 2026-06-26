@@ -16,7 +16,7 @@
             <div class="col text-center mt-3">
                 <h2 class="logo-font text-black">Products</h2>
                 <!-- Display category badge -->
-                 {% if category_badge %}
+                 {% if current_categories %}
                     {% for c in current_categories %}
                     <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
                         <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
@@ -86,13 +86,15 @@
                                             <!-- Product category name -->
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category }}">
+                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
                                                     <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+                                                </a>
+                                            </p>
                                             {% endif %}
                                             <!-- Product subcategory name -->
                                             {% if product.subcategory %}
                                             <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory }}">
+                                                <a class="text-muted" href="{% url 'products' %}?subcategory={{ product.subcategory.name }}">
                                                     <i class="fas fa-tag mr-1"></i>{{ product.subcategory.friendly_name }}
                                                 </a>
                                             </p>

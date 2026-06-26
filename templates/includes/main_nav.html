@@ -20,7 +20,7 @@
                 <a href="{% url "products" %}?subcategory=card" class="dropdown-item">Card</a>
                 <a href="{% url "products" %}?subcategory=paper" class="dropdown-item">Paper</a>
                 <a href="{% url "products" %}?subcategory=foam" class="dropdown-item">Foam</a>
-                <a href="{% url "products" %}?subcategory=card,paper,foam" class="dropdown-item">All Materials</a>
+                <a href="{% url "products" %}?category=materials" class="dropdown-item">All Materials</a>
             </div>
         </li>
 
@@ -32,7 +32,7 @@
                 <a href="{% url "products" %}?subcategory=cutting_mats" class="dropdown-item">Cutting Mats</a>
                 <a href="{% url "products" %}?subcategory=scissors_cutting_tools" class="dropdown-item">Scissors &amp Cutting Tools</a>
                 <a href="{% url "products" %}?subcategory=stencils" class="dropdown-item">Stencils</a>
-                <a href="{% url "products" %}?subcategory=cutting_mats,scissors_cutting_tools,stencils" class="dropdown-item">All Tools</a>
+                <a href="{% url "products" %}?category=tools" class="dropdown-item">All Tools</a>
             </div>
         </li>
 
@@ -44,7 +44,7 @@
                 <a href="{% url "products" %}?subcategory=pens_pencils" class="dropdown-item">Pens &amp Pencils</a>
                 <a href="{% url "products" %}?subcategory=stationery_sets" class="dropdown-item">Stationery Sets</a>
                 <a href="{% url "products" %}?subcategory=acetate_sheets" class="dropdown-item">Acetate Sheets</a>
-                <a href="{% url "products" %}?subcategory=pens_pencils,stationery_sets,acetate_sheets" class="dropdown-item">All Stationery</a>
+                <a href="{% url "products" %}?category=stationery" class="dropdown-item">All Stationery</a>
             </div>
         </li>
 
@@ -56,7 +56,7 @@
                 <a href="{% url "products" %}?subcategory=new_arrivals" class="dropdown-item">New Arrivals</a>
                 <a href="{% url "products" %}?subcategory=deals" class="dropdown-item">Deals</a>
                 <a href="{% url "products" %}?subcategory=clearance" class="dropdown-item">Clearance</a>
-                <a href="{% url "products" %}?subcategory=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
+                <a href="{% url "products" %}?category=specials" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>
