@@ -9,11 +9,15 @@ django-allauth==65.16.1
 django-cloudinary-storage==0.3.0
 django-countries==8.2.0
 django-crispy-forms==2.6
+flake8==7.3.0
 gunicorn==26.0.0
 idna==3.18
+mccabe==0.7.0
 packaging==26.2
 pillow==12.2.0
 psycopg2==2.9.12
+pycodestyle==2.14.0
+pyflakes==3.4.0
 requests==2.34.2
 setuptools==75.8.2
 six==1.17.0

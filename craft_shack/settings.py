@@ -29,9 +29,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = [
-    '127.0.0.1', # vs code preview
-    'localhost', # listen for stripe webhooks
-    'craft-shack-03a82b9c73ae.herokuapp.com', # Heroku application
+    '127.0.0.1',  # vs code preview
+    'localhost',  # listen for stripe webhooks
+    'craft-shack-03a82b9c73ae.herokuapp.com',  # Heroku application
 ]
 
 
@@ -45,17 +45,20 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary_storage',
-    'django.contrib.sites', # required by allauth so copied from allauth documentation
-    'allauth', # required by allauth so copied from allauth documentation
-    'allauth.account', # required by allauth so copied from allauth documentation
-    'allauth.socialaccount', # required by allauth so copied from allauth documentation
+
+    # required by allauth so copied from allauth documentation
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'cloudinary',
     'home',
     'products',
     'bag',
     'checkout',
     'profiles',
-    
+
     # Other
     'crispy_forms',
     'crispy_bootstrap5',
@@ -70,7 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware", # required by allauth so copied from allauth documentation
+    # required by allauth so copied from allauth documentation
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'craft_shack.urls'
@@ -89,12 +93,14 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                #'django.template.context_processors.csrf',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'bag.contexts.bag_contents', # required by bag app so copied from bag tutorial documentation
+                # required by bag app so copied from bag tutorial documentation
+                'bag.contexts.bag_contents',
+
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -129,10 +135,6 @@ WSGI_APPLICATION = 'craft_shack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-#DATABASES = {
-#    'default': dj_database_url.parse(os.environ.get#('DATABASE_URL'))
-#    }
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
@@ -212,8 +214,8 @@ if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'craftshack@example.com'
 else:
-    EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS =True
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
