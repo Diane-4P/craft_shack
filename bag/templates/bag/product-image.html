@@ -1,0 +1,7 @@
+{% load static %}
+
+{% if item.product.image %}
+<img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="">
+{% else %}
+<img class="img-fluid rounded" src="{% static "images/noimage.png" %}" alt="item.product.name">
+{% endif %}
