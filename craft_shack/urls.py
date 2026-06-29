@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from checkout.webhooks import webhook  # From Stripe assistant
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,3 +31,8 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('wh/', webhook, name='webhook'),  # From Stripe assistant
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler400 = "main.views.custom_400"
+handler403 = "main.views.custom_403"
+handler404 = "main.views.custom_404"
+handler500 = "main.views.custom_500"
