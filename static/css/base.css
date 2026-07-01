@@ -141,7 +141,6 @@ input[name='q']::placeholder {
 }
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
-
 .arrow-up {
     width: 0; 
     height: 0; 
@@ -299,6 +298,29 @@ input[name='q']::placeholder {
     border-color: #dc3545;
     border-radius: 0;
 }
+
+/* Footer */
+
+.footer {
+    background-color: #000;
+}
+
+.social-font {
+    font-family: Pontano, sans-serif 
+}
+
+@media (max-width: 430px) {
+    .policy-items,
+    .social-items {
+        padding-left: 80px;
+    }   
+}
+
+@media (min-width: 992px) {
+    .policy-items,
+    .social-items {
+        padding-left: 80px;
+    }   
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {

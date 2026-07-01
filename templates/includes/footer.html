@@ -1,0 +1,100 @@
+{% load static %}
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row w-100">
+            <div class="col-sm">
+                <!-- Name, address and phone number of Craft Shack -->
+                <div class="text-center mt-4 mb-0">
+                    <a href="{% url "home" %}" class="nav-link logo">
+                        <p class="text-center text-white logo-footer mb-0">
+                            <strong>Craft</strong>Shack
+                        </p>
+                    </a>
+                    <p class="text-white ms-2 mb-0">
+                        <small>123 Bishop Street, London, EC3 4AB, UK</small>
+                    </p>
+                    <p class="text-white ms-2 mb-0">
+                        <small>craftshack@example.com</small>
+                    </p>
+                    <p class="text-white ms-2 mb-0">
+                        <small>&zwj;020 &zwj;7800 &zwj;7800</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm mt-2 mb-3">
+                <div class="row policy-items mt-2">
+                <!-- Policies -->
+                    <p class="h5 footer-heading text-white logo-font">Policies</p>
+                    <a href="{% url "privacy_policy" %}">
+                        <p class="text-white text-start mb-1">Privacy Policy</p>
+                    </a>
+                    <a href="{% url "terms_and_conditions" %}">
+                        <p class="text-white text-start mb-1">Terms & Conditions</p>
+                    </a>
+                    <a href="{% url "returns_and_refunds" %}">
+                        <p class="text-white text-start mb-1">Returns & Refunds</p>
+                    </a>
+                    <a href="{% url "shipping_policy" %}">
+                        <p class="text-white text-start mb-1">Shipping Policy</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm mt-2 mb-3">
+                <!-- Social Media -->
+                <div class="text-start social-items mt-2">
+                    <p class="h5 footer-heading text-white logo-font">Follow Us</p>
+                    <div class="col mb-1 text-start">
+                        <a href="https://www.facebook.com" target="-blank" rel="noopener" aria-label="Find us on Facebook (opens in a new tab)" >
+                            <i class="fa-brands fa-square-facebook text-white">
+                                <span class="text-white social-font ps-2">Facebook</span>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="col mb-1 text-start">
+                        <a href="https://www.instagram.com/" target="-blank" rel="noopener" aria-label="Find us on Instagram (opens in a new tab)" >
+                            <i class="fa-brands fa-square-instagram text-white">
+                                <span class="text-white social-font ps-2">Instagram</span>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="col mb-1 text-start">
+                        <a href="https://www.pinterest.co.uk/" target="-blank" rel="noopener" aria-label="Find us on Pinterest (opens in a new tab)" >
+                            <i class="fa-brands fa-square-pinterest text-white">
+                                <span class="text-white social-font ps-2">Pinterest</span>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="col mb-1 text-start">
+                        <a href="https://twitter.com" target="-blank" rel="noopener" aria-label="Find us on Twitter (opens in a new tab)" >
+                            <i class="fa-brands fa-square-x-twitter text-white">
+                                <span class="text-white social-font ps-2">Twitter</span>
+                            </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col mt-4">
+                <!--Copyright -->
+                <div class="text-center mt-2">
+                    <p class="text-white mb-1">© <small><span id="current-year"></span>
+                        Craft Shack, a Full Stack E-Commerce Project (Django)</small>
+                    </p>
+                    <p class="text-white">
+                        <small>For Educational Purposes Only</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% block postloadjs %}
+<!-- From Joy Zadan at https://github.com/JoyZadan/shop-kbeauty/blob/main/templates/includes/footer.html -->
+<script>
+    // UPDATES COPYRIGHT IN FOOTER TO THE CURRENT YEAR
+    // gets the element by ID and stores it in a constant
+    const currentYear = document.querySelector("#current-year");
+    currentYear.innerText = new Date().getFullYear();
+</script>
+{% endblock %}
