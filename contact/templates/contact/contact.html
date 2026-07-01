@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock page_header %}
+
+{% block content %}
+
+<!-- Alert for error messages -->
+<div id="error-alert" class="alert alert-danger" role="alert" style="display: none;">
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+{% endfor %}
+</div>
+
+ <!-- Add contact us using Bootstrap 5.3.0 -->
+<div class="container my-2">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">        
+            <div class="card rounded-0">
+                <div class="card-body g-3 text-center">
+                    <h2 class="text-center mt-4">Contact Us</h2>
+
+                    <form method="POST" action="{% url "contact" %}">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        
+                        <div>
+                            <a href="{% url 'home' %}" class="btn btn-outline-black rounded-0 mx-4">							
+                                <span class="font-weight-bold">Cancel</span>
+                            </a>
+                            <button type="submit" class="btn btn-black rounded-0 mx-4 px-4">
+                                <span class="font-weight-bold">Send</span>							
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

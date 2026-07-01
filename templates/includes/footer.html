@@ -1,6 +1,6 @@
 {% load static %}
 
-<footer class="footer">
+<footer class="bg-black text-white py-4">
     <div class="container-fluid">
         <div class="row w-100">
             <div class="col-sm">
@@ -74,9 +74,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col mt-4">
-                <!--Copyright -->
-                <div class="text-center mt-2">
+            <div class="col mt-4">                
+                <!-- Contact Us and Copyright -->
+                <div class="text-center mt-0">
+                    <a href="{% url "contact" %}" class="btn btn-outline-white rounded-0 text-white btn-sm mb-1">
+                        <span class="text-uppercase">Contact Us</span>
+                    </a>
                     <p class="text-white mb-1">© <small><span id="current-year"></span>
                         Craft Shack, a Full Stack E-Commerce Project (Django)</small>
                     </p>
